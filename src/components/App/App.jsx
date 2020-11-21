@@ -3,6 +3,8 @@ import { ProvideAuth } from "hooks/use-auth";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { publicRoutes, privateRoutes } from "utils/routes";
 
+// TODO: add react providers here
+
 class App extends React.Component {
   render() {
     return (

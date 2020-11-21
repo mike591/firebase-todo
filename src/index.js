@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "components/App";
 import firebase from "firebase/app";
+import "normalize.css";
+import "./main.scss";
 
 firebase.initializeApp({
   apiKey: "AIzaSyA8Slwa42sGtvwTDzJ1qBStPc-YE7bNHHk",

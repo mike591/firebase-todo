@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 
+// TODO: change signin to use Google auth.
+
 const authContext = createContext();
 
 export function ProvideAuth({ children }) {
