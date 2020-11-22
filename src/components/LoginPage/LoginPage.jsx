@@ -1,20 +1,19 @@
 import React from "react";
-import firebase from "firebase/app";
 import "firebase/auth";
-
-// TODO: move signin to use-auth hook
+import { useAuth } from "hooks/use-auth";
+import { Redirect } from "react-router-dom";
 
 const LoginPage = () => {
-  const handleLogin = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const results = await firebase.auth().signInWithPopup(provider);
-    console.log(results);
-  };
-
+  const { user, handleLogin } = useAuth();
+  if (user) {
+    return <Redirect to="/todo" />;
+  }
   return (
     <div className="LoginPage">
-      <p>Enter via Google Auth</p>
-      <button onClick={handleLogin}>Sign In</button>
+      <div className="prompt">
+        <p>Enter via Google Auth</p>
+        <button onClick={handleLogin}>Sign In</button>
+      </div>
     </div>
   );
 };

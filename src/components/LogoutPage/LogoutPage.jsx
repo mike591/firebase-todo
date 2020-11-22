@@ -1,7 +1,11 @@
 import React from "react";
+import { useAuth } from "hooks/use-auth";
+import { Redirect } from "react-router-dom";
 
 const LogoutPage = () => {
-  return <div>Logout Page</div>;
+  const { handleLogout } = useAuth();
+  handleLogout();
+  return <Redirect to="/" />;
 };
 
 export default LogoutPage;

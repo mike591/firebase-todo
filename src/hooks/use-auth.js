@@ -2,66 +2,32 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 
-// TODO: change signin to use Google auth.
-
 const authContext = createContext();
 
-export function ProvideAuth({ children }) {
+export const ProvideAuth = ({ children }) => {
   const auth = useProvideAuth();
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
-}
+};
 
 export const useAuth = () => {
   return useContext(authContext);
 };
 
 const useProvideAuth = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
 
-  const signin = (email, password) => {
-    return firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        setUser(response.user);
-        return response.user;
-      });
+  const handleLogin = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const response = await firebase.auth().signInWithPopup(provider);
+    setUser(response.user);
   };
 
-  const signup = (email, password) => {
-    return firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        setUser(response.user);
-        return response.user;
-      });
-  };
-
-  const signout = () => {
+  const handleLogout = () => {
     return firebase
       .auth()
       .signOut()
       .then(() => {
         setUser(false);
-      });
-  };
-
-  const sendPasswordResetEmail = (email) => {
-    return firebase
-      .auth()
-      .sendPasswordResetEmail(email)
-      .then(() => {
-        return true;
-      });
-  };
-
-  const confirmPasswordReset = (code, password) => {
-    return firebase
-      .auth()
-      .confirmPasswordReset(code, password)
-      .then(() => {
-        return true;
       });
   };
 
@@ -79,10 +45,7 @@ const useProvideAuth = () => {
 
   return {
     user,
-    signin,
-    signup,
-    signout,
-    sendPasswordResetEmail,
-    confirmPasswordReset,
+    handleLogin,
+    handleLogout,
   };
 };
