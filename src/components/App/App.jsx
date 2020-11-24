@@ -1,11 +1,12 @@
 import React from "react";
-import { ProvideAuth } from "hooks/use-auth";
+import { ProvideAuth } from "hooks/useAuth";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { publicRoutes, privateRoutes } from "utils/routes";
 import PageNotFoundPage from "components/PageNotFoundPage";
 import Header from "components/Header";
 import PrivateRoute from "components/PrivateRoute";
 import PublicRoute from "components/PublicRoute";
+import BaseLoader from "components/BaseLoader";
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class App extends React.Component {
           <ProvideAuth>
             <Header />
             <div className="page-wrapper">
+              <BaseLoader />
               <Switch>
                 {publicRoutes.map((route) => (
                   <PublicRoute

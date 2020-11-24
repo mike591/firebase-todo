@@ -1,6 +1,6 @@
 import React from "react";
 import "firebase/auth";
-import { useAuth } from "hooks/use-auth";
+import { useAuth } from "hooks/useAuth";
 import { Redirect } from "react-router-dom";
 
 const LoginPage = () => {
