@@ -10,7 +10,7 @@ const BaseLoader = () => {
     <div className="BaseLoader">
       {isLoading && (
         <div className="dimmer">
-          <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
+          <Loader type="Oval" color="#00BFFF" height={100} width={100} />
         </div>
       )}
     </div>
