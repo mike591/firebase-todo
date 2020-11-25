@@ -13,7 +13,7 @@ export const useTodos = (user) => {
         .where("uid", "==", user.uid)
         .orderBy("createdAt")
         .onSnapshot((snapshot) => {
-          setTodos(snapshot.docs.map((doc) => doc.data()));
+          setTodos(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         });
 
       return unsubscribe;
@@ -30,8 +30,14 @@ export const useTodos = (user) => {
     });
   };
 
+  const deleteTodo = (id) => {
+    const db = firebase.firestore();
+    db.collection("todos").doc(id).delete();
+  };
+
   return {
     todos,
     addTodo,
+    deleteTodo,
   };
 };

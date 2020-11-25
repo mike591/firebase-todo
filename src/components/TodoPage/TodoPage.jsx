@@ -5,7 +5,7 @@ import { useTodos } from "hooks/useTodos";
 const TodoPage = () => {
   const { user } = useAuth();
   const [value, setValue] = useState("");
-  const { todos, addTodo } = useTodos(user);
+  const { todos, addTodo, deleteTodo } = useTodos(user);
 
   const handleAddTodo = () => {
     addTodo(value);
@@ -26,8 +26,11 @@ const TodoPage = () => {
           Add Todo
         </button>
       </div>
-      {todos.map((todo, idx) => (
-        <div key={idx}>{todo.description}</div>
+      {todos.map((todo) => (
+        <div key={todo.id} className="todo-wrapper">
+          <div>{todo.description}</div>
+          <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+        </div>
       ))}
     </div>
   );
