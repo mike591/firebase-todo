@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div className="Header">
-      <div className="app-name">TODO App</div>
+      <h1 className="app-name">TODO App</h1>
       {user && <button onClick={() => history.push("/logout")}>Logout</button>}
     </div>
   );

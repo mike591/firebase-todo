@@ -22,7 +22,7 @@ const TodoPage = () => {
         <input
           className="todo-input"
           type="string"
-          placeholder="What do you need to do?"
+          placeholder="What do you need to do...?"
           value={value}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
