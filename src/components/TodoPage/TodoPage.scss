@@ -28,10 +28,6 @@
     }
   }
 
-  .todo-wrapper {
-    border: 1px solid gray;
-  }
-
   .todos {
     width: 30rem;
     display: grid;
@@ -40,10 +36,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.25rem 0.5rem;
-
-    &:not(:first-of-type) {
-      border-top: 1px solid gray;
-    }
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-top: 1px solid gray;
 
     &.is-completed {
       opacity: 0.4;
@@ -78,9 +73,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.25rem 0.5rem;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
-    border-bottom: 1px solid gray;
+    border: 1px solid gray;
     background-color: rgba(gray, 0.1);
   }
 
