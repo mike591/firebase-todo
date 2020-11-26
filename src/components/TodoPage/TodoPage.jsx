@@ -1,20 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useAuth } from "hooks/useAuth";
 import { useTodos } from "hooks/useTodos";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiTrash } from "react-icons/bi";
 import { GrCheckboxSelected, GrCheckbox } from "react-icons/gr";
 import makeClassName from "utils/makeClassName";
+import pluralize from "pluralize";
 
 const TodoPage = () => {
   const { user } = useAuth();
   const [value, setValue] = useState("");
+  const [view, setView] = useState("all");
   const { todos, addTodo, deleteTodo, updateTodoCompletion } = useTodos(user);
 
   const handleAddTodo = () => {
     addTodo(value);
     setValue("");
   };
+
+  const handleClearCompleted = () => {
+    todos.forEach((todo) => {
+      if (todo.isCompleted) {
+        deleteTodo(todo.id);
+      }
+    });
+  };
+
+  const todosLeft = useMemo(() => {
+    return todos.filter((todo) => !todo.isCompleted).length;
+  }, [todos]);
+
+  const todosToShow = useMemo(() => {
+    if (view === "active") {
+      return todos.filter((todo) => !todo.isCompleted);
+    } else if (view === "completed") {
+      return todos.filter((todo) => todo.isCompleted);
+    } else {
+      return todos;
+    }
+  }, [todos, view]);
 
   return (
     <div className="TodoPage">
@@ -40,7 +64,7 @@ const TodoPage = () => {
         </button>
       </div>
       <div className="todo-wrapper">
-        {todos.map((todo) => (
+        {todosToShow.map((todo) => (
           <div
             key={todo.id}
             className={makeClassName(
@@ -62,6 +86,30 @@ const TodoPage = () => {
             </button>
           </div>
         ))}
+      </div>
+      <div className="info">
+        <div>{`${pluralize("todo", todosLeft, true)} left`}</div>
+        <div className="view-toggles">
+          <button
+            className={makeClassName(view === "all" && "--is-selected")}
+            onClick={() => setView("all")}
+          >
+            All
+          </button>
+          <button
+            className={makeClassName(view === "active" && "--is-selected")}
+            onClick={() => setView("active")}
+          >
+            Active
+          </button>
+          <button
+            className={makeClassName(view === "completed" && "--is-selected")}
+            onClick={() => setView("completed")}
+          >
+            Completed
+          </button>
+        </div>
+        <button onClick={handleClearCompleted}>Clear completed</button>
       </div>
     </div>
   );
