@@ -14,7 +14,7 @@
     margin-bottom: 1rem;
     border: 1px solid black;
     max-width: 20rem;
-    width: 100vw;
+    width: 90vw;
     input {
       border: none;
     }
@@ -31,7 +31,7 @@
 
   .todos {
     max-width: 30rem;
-    width: 100vw;
+    width: 90vw;
     display: grid;
     grid-template-columns: 3rem 1fr 3rem;
     column-gap: 0.5rem;
@@ -72,7 +72,7 @@
     grid-template-columns: 1fr 1.2fr 1fr;
     column-gap: 0.5rem;
     max-width: 30rem;
-    width: 100vw;
+    width: 90vw;
     justify-content: space-between;
     align-items: center;
     padding: 0.25rem 0.5rem;
