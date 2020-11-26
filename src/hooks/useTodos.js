@@ -11,6 +11,7 @@ export const useTodos = (user) => {
       const unsubscribe = db
         .collection("todos")
         .where("uid", "==", user.uid)
+        .where("isDeleted", "==", false)
         .orderBy("createdAt")
         .onSnapshot((snapshot) => {
           setTodos(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -24,20 +25,34 @@ export const useTodos = (user) => {
     const db = firebase.firestore();
     db.collection("todos").add({
       description: value,
-      isComplete: false,
+      isCompleted: false,
+      isDeleted: false,
       uid: user.uid,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      lastUpdated: firebase.firestore.FieldValue.serverTimestamp(),
     });
   };
 
   const deleteTodo = (id) => {
     const db = firebase.firestore();
-    db.collection("todos").doc(id).delete();
+    db.collection("todos").doc(id).update({
+      isDeleted: true,
+      lastUpdated: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+  };
+
+  const updateTodoCompletion = (id, isCompleted) => {
+    const db = firebase.firestore();
+    db.collection("todos").doc(id).update({
+      isCompleted,
+      lastUpdated: firebase.firestore.FieldValue.serverTimestamp(),
+    });
   };
 
   return {
     todos,
     addTodo,
     deleteTodo,
+    updateTodoCompletion,
   };
 };
