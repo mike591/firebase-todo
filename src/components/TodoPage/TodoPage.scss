@@ -13,7 +13,8 @@
     grid-template-columns: 1fr 3rem;
     margin-bottom: 1rem;
     border: 1px solid black;
-    width: 20rem;
+    max-width: 20rem;
+    width: 100vw;
     input {
       border: none;
     }
@@ -29,7 +30,8 @@
   }
 
   .todos {
-    width: 30rem;
+    max-width: 30rem;
+    width: 100vw;
     display: grid;
     grid-template-columns: 3rem 1fr 3rem;
     column-gap: 0.5rem;
@@ -69,7 +71,8 @@
     display: grid;
     grid-template-columns: 1fr 1.2fr 1fr;
     column-gap: 0.5rem;
-    width: 30rem;
+    max-width: 30rem;
+    width: 100vw;
     justify-content: space-between;
     align-items: center;
     padding: 0.25rem 0.5rem;
@@ -79,6 +82,7 @@
 
   .view-toggles {
     display: flex;
+    flex-wrap: wrap;
     button {
       border: 1px solid transparent;
       background-color: unset;
