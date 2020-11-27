@@ -1,17 +1,12 @@
 .Header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 5rem;
-  padding: 0.5rem;
-  border-bottom: 1px solid black;
-
-  .app-name {
-    font-weight: bold;
-    font-size: 1.5rem;
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
   }
 
-  button {
-    height: 2rem;
+  .MuiButton-root.menu-button {
+    color: white;
   }
 }

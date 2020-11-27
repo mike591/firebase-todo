@@ -1,99 +1,61 @@
-.TodoPage {
+.TodoPage.MuiContainer-root {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 5rem;
 
-  .todo-input {
-    padding: 0.5rem 1rem;
-  }
-
-  .input-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 3rem;
+  .todo-TextField {
+    width: 13rem;
     margin-bottom: 1rem;
-    border: 1px solid black;
-    max-width: 20rem;
-    width: 90vw;
-    input {
-      width: 100%;
-      border: none;
-    }
-  }
-
-  .delete-button {
-    opacity: 0;
-    &:hover {
-      svg {
-        fill: red;
-      }
-    }
-  }
-
-  .todos {
-    max-width: 30rem;
-    width: 90vw;
-    display: grid;
-    grid-template-columns: 3rem 1fr 3rem;
-    column-gap: 0.5rem;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.25rem 0.5rem;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
-    border-top: 1px solid gray;
-
-    &.is-completed {
-      opacity: 0.4;
-    }
-
-    &:hover {
-      .delete-button {
-        opacity: 1;
-      }
-    }
-
-    button {
-      height: 3rem;
-      border: none;
-      background-color: unset;
-    }
-  }
-
-  .add-todo-button {
-    padding: 0;
-    width: 3rem;
-    height: 3rem;
-    border: none;
-    border-left: 1px solid black;
   }
 
   .info {
     display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
-    column-gap: 0.5rem;
-    max-width: 30rem;
-    width: 90vw;
-    justify-content: space-between;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .todo-summary {
+    display: flex;
     align-items: center;
-    padding: 0.25rem 0.5rem;
-    border: 1px solid gray;
-    background-color: rgba(gray, 0.1);
   }
 
   .view-toggles {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-    button {
-      border: 1px solid transparent;
-      background-color: unset;
-      &:hover {
-        border: 1px solid gray;
-      }
+    max-width: 20rem;
+  }
 
-      &.--is-selected {
-        border: 1px solid black;
+  .todo-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .todos {
+    flex-grow: 1;
+    &.--is-completed {
+      .MuiTypography-root {
+        text-decoration: line-through;
+        opacity: 0.25;
       }
     }
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.confirm-delete-popover-content {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  .popover-actions {
+    display: flex;
+    justify-content: space-between;
   }
 }

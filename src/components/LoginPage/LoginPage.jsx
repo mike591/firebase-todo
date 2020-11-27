@@ -2,6 +2,14 @@ import React from "react";
 import "firebase/auth";
 import { useAuth } from "hooks/useAuth";
 import { Redirect } from "react-router-dom";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+  Container,
+} from "@material-ui/core";
 
 const LoginPage = () => {
   const { user, handleLogin } = useAuth();
@@ -9,12 +17,20 @@ const LoginPage = () => {
     return <Redirect to="/todo" />;
   }
   return (
-    <div className="LoginPage">
-      <div className="prompt">
-        <p>Enter via Google Auth</p>
-        <button onClick={handleLogin}>Sign In</button>
-      </div>
-    </div>
+    <Container className="LoginPage">
+      <Card className="prompt">
+        <CardContent>
+          <Typography color="primary" gutterBottom variant="h4">
+            Enter via Google Auth
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button onClick={handleLogin} color="primary" variant="contained">
+            Sign In
+          </Button>
+        </CardActions>
+      </Card>
+    </Container>
   );
 };
 
