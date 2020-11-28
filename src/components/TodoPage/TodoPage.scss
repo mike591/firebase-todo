@@ -5,13 +5,13 @@
   padding-top: 5rem;
 
   .todo-TextField {
-    width: 13rem;
+    width: 20rem;
     margin-bottom: 1rem;
   }
 
   .info {
     display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-columns: auto 1fr auto;
     width: 100%;
     margin-bottom: 1rem;
   }
@@ -23,9 +23,12 @@
 
   .view-toggles {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-    max-width: 20rem;
+
+    button:not(:last-of-type) {
+      margin-right: 0.5rem;
+    }
   }
 
   .todo-wrapper {
